@@ -52,41 +52,81 @@ function App() {
                 height={112}
                 src="./img/goods/1.jpg" alt="item" />
             </div>
-
             <div className="card__body">
-
               <p className="card__model">Male fragrance</p>
               <div className="card__bottom">
-
                 <div className="card__price">
                   <span >Price</span>
                   <p>10.00$</p>
                 </div>
-
                 <button className="card__add" type="">
                   <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
                 </button>
-
               </div>
-
             </div>
-
-
           </div>
-
           <div className="goods__card card">
             <div className="card__img">
               <img
                 width={133}
                 height={112}
-                src="./img/goods/2.jpg" alt="item" />
+                src="./img/goods/1.jpg" alt="item" />
             </div>
             <div className="card__body">
               <p className="card__model">Male fragrance</p>
-              <p className="card__price-label">Price</p>
-              <p className="card__price">10.00$</p>
+              <div className="card__bottom">
+                <div className="card__price">
+                  <span >Price</span>
+                  <p>10.00$</p>
+                </div>
+                <button className="card__add" type="">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+                </button>
+              </div>
             </div>
           </div>
+          <div className="goods__card card">
+            <div className="card__img">
+              <img
+                width={133}
+                height={112}
+                src="./img/goods/1.jpg" alt="item" />
+            </div>
+            <div className="card__body">
+              <p className="card__model">Male fragrance</p>
+              <div className="card__bottom">
+                <div className="card__price">
+                  <span >Price</span>
+                  <p>10.00$</p>
+                </div>
+                <button className="card__add" type="">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="goods__card card">
+            <div className="card__img">
+              <img
+                width={133}
+                height={112}
+                src="./img/goods/1.jpg" alt="item" />
+            </div>
+            <div className="card__body">
+              <p className="card__model">Male fragrance</p>
+              <div className="card__bottom">
+                <div className="card__price">
+                  <span >Price</span>
+                  <p>10.00$</p>
+                </div>
+                <button className="card__add" type="">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+       
 
         </div>
       </section>
