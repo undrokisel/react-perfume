@@ -6,6 +6,94 @@ function App() {
   return (
     <div className="wrapper">
 
+      <div className="overlay">
+        <div className="drawer">
+
+          <div className="drawer__top">
+
+          <div>
+          <h2 className="drawer__title">Cart</h2>
+
+          </div>
+            
+            <button className="drawer__remove" type="">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+            </button>
+
+          </div>
+
+          <div className="drawer__items cart__items">
+
+            <div className="cart__item item-cart">
+              <div className="item-cart__img">
+                <img
+                  width={70}
+                  height={70}
+                  src="./img/goods/1.jpg" alt="item" />
+              </div>
+              <div className="item-cart__body">
+                <p className="item-cart__model">Male fragrance</p>
+                <div className="item-cart__bottom">
+                  <div className="item-cart__price">
+                    <span >Price</span>
+                    <p>10.00$</p>
+                  </div>
+                </div>
+              </div>
+              <button className="item-cart__remove" type="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+              </button>
+            </div>
+
+            <div className="cart__item item-cart">
+              <div className="item-cart__img">
+                <img
+                  width={70}
+                  height={70}
+                  src="./img/goods/1.jpg" alt="item" />
+              </div>
+              <div className="item-cart__body">
+                <p className="item-cart__model">Male fragrance</p>
+                <div className="item-cart__bottom">
+                  <div className="item-cart__price">
+                    <span >Price</span>
+                    <p>10.00$</p>
+                  </div>
+                </div>
+              </div>
+              <button className="item-cart__remove" type="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div className="drawer__footer total">
+            <ul className="total__list">
+              <li className="total__item total__item_amount">
+                <span>Total:</span>
+                <div className="dash"></div>
+                <b>10.00$</b>
+              </li>
+              <li className="total__item total__item_tax">
+                <span>Tax 5%:</span>
+                <div className="dash"></div>
+                <b>0.5$</b>
+              </li>
+            </ul>
+            <button className="btn total__btn" type="submit">
+              <span>make an order</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
+            </button>
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
       <header className="header">
 
         {/* ------------------------------------------------------ */}
