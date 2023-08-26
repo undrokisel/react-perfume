@@ -1,0 +1,27 @@
+.info {
+    flex: 1 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+
+    .info__img {
+        margin-bottom: 40px;
+        & img {
+            width: 150px;
+            height: 150px;
+        }
+    }
+    .info__title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .info__text {
+        margin-bottom: 20px;
+    }
+    .info__btn {
+        margin-bottom: 40px;
+    }
+}
