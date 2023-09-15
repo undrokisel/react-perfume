@@ -1,5 +1,5 @@
 import { SearchBar } from "../SearchBar";
-import { ProductList } from "../ProductList";
+import { ProductsList } from "../ProductsList";
 import ss from "../../components/Goods/Goods.module.scss";
 import { useLocation } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export function Goods() {
                 <SearchBar />
             </div>
             <div className={ss.goods__cards}>
-                <ProductList />
+                <ProductsList />
             </div>
         </section>
     )

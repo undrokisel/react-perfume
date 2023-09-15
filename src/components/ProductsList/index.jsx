@@ -3,17 +3,21 @@ import { Store } from "../../context/Store";
 import { Card } from "../Card"
 import ContentLoader from "react-content-loader"
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export function ProductList() {
+export function ProductsList() {
 
     const {
-        filteredGoods,
+        // filteredGoods,
         isLoading,
         favorites,
         searchValue
     } = useContext(Store);
 
-    const arr = useLocation().pathname === '/favorites' ? favorites : filteredGoods;
+    const products  = useSelector((state) => state.products.list)
+
+    // const arr = useLocation().pathname === '/favorites' ? favorites : filteredGoods;
+    const arr = useLocation().pathname === '/favorites' ? favorites : products;
     
     const goods = arr && Array.isArray(arr)
         ? arr.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()))

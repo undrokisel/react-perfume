@@ -13,6 +13,8 @@ import { apiGetOrder, apiOrderCreate } from './api/order.js';
 import { debounce } from 'lodash';
 import { Orders } from './pages/Orders';
 import { apiGetFavorites, apiToggleFavorites } from './api/favorites.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from './store/productsSlice.js';
 
 function App() {
 
@@ -32,6 +34,12 @@ function App() {
   const [isOrderSubmit, setIsOrderSubmit] = useState(false);
 
 
+  const dispatch = useDispatch();
+
+  const fetchedProducts = useSelector(state => state.products.list); 
+  // console.log(fetchedProducts);
+
+
   const { darkTheme, lightTheme } = useContext(ThemeContext);
   const toggleTheme = () => {
     theme === 'light'
@@ -40,6 +48,9 @@ function App() {
   }
 
   useEffect(() => {
+
+    dispatch(fetchProducts());
+
     setIsLoading(true)
     const fetchData = async () => {
       try {
@@ -52,6 +63,7 @@ function App() {
             apiGetOrder(),
             apiGetFavorites(),
           ])
+          
         setFilteredGoods(updatedProducts);
         setCartItems(updatedCart);
         setOrderProducts(updatedOrders);
