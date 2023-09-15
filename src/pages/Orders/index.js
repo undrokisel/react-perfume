@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import ss from './Orders.module.scss'
-import { Store } from '../../context/Store';
+// import { Store } from '../../context/Store';
 import Info from '../../components/Info';
-import { apiGetOrder } from '../../api/order';
+import { Loader } from '../../components/Loader';
+// import { apiGetOrder } from '../../api/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from '../../store/ordersSlice';
 
@@ -18,8 +19,9 @@ export const Orders = () => {
     }, [dispatch])
 
     return (
+
         <div>
-            {status === 'loading' && <div style={{ textAlign: "center" }}>Loading. Please, wait</div>}
+            {status === 'loading' && <Loader />}
             {status === 'rejected' && error &&
                 <div style={{ textAlign: "center" }}>Error: {error}</div>}
             {orderProducts.length < 1 && status === 'resolved'
@@ -32,7 +34,10 @@ export const Orders = () => {
                 />
                 :
                 <>
-                    <div className={ss.order__title}>Your order</div>
+                    {status === 'resolved' && !error &&
+                        <div className={ss.order__title}>Your order
+                        </div>
+                    }
                     <div className={`${ss.cart__items}`}>
 
                         {
