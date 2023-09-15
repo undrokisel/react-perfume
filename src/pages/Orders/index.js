@@ -3,24 +3,26 @@ import ss from './Orders.module.scss'
 import { Store } from '../../context/Store';
 import Info from '../../components/Info';
 import { apiGetOrder } from '../../api/order';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrders } from '../../store/ordersSlice';
 
 export const Orders = () => {
-    const { orderProducts, setOrderProducts } = useContext(Store);
+    // const { orderProducts, setOrderProducts } = useContext(Store);
+
+    const dispatch = useDispatch()
+    const { list, status, error } = useSelector(state => state.orders)
+    const orderProducts = list
 
     useEffect(() => {
-        (async () => {
-            try {
-                const order = await apiGetOrder();
-                setOrderProducts(order);
-            } catch (error) {
-                throw new Error(error.message);
-            }
-        })();
-    }, [])
+        dispatch(fetchOrders)
+    }, [dispatch])
 
     return (
         <div>
-            {orderProducts.length < 1
+            {status === 'loading' && <div style={{ textAlign: "center" }}>Loading. Please, wait</div>}
+            {status === 'rejected' && error &&
+                <div style={{ textAlign: "center" }}>Error: {error}</div>}
+            {orderProducts.length < 1 && status === 'resolved'
                 ?
                 <Info
                     img={'404.png'}
@@ -79,7 +81,8 @@ export const Orders = () => {
                         }
                     </div>
                 </>
-            }</div>
+            }
+        </div>
 
     )
 }

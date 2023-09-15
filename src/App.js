@@ -16,6 +16,7 @@ import { apiGetFavorites, apiToggleFavorites } from './api/favorites.js';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './store/productsSlice.js';
 import { fetchFavorites } from './store/favoritesSlice.js';
+import { fetchOrders } from './store/ordersSlice.js';
 
 function App() {
 
@@ -48,9 +49,8 @@ function App() {
   useEffect(() => {
 
     dispatch(fetchProducts());
-    console.log('fetchProducts');
     dispatch(fetchFavorites());
-    console.log('fetchFavorites');
+    dispatch(fetchOrders());
 
     setIsLoading(true)
     const fetchData = async () => {
