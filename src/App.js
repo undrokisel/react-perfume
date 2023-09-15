@@ -13,10 +13,11 @@ import { apiGetOrder, apiOrderCreate } from './api/order.js';
 import { debounce } from 'lodash';
 import { Orders } from './pages/Orders';
 import { apiGetFavorites, apiToggleFavorites } from './api/favorites.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './store/productsSlice.js';
 import { fetchFavorites } from './store/favoritesSlice.js';
 import { fetchOrders } from './store/ordersSlice.js';
+import { fetchCart } from './store/cartsSlice.js';
 
 function App() {
 
@@ -27,8 +28,8 @@ function App() {
   const [searchValue, setSearchValue] = useState('')
   // const [filteredGoods, setFilteredGoods] = useState([])
 
-  const [cartItems, setCartItems] = useState([]);
-  const [total, setTotal] = useState('0')
+  // const [cartItems, setCartItems] = useState([]);
+  // const [total, setTotal] = useState('0')
 
   // const [favorites, setFavorites] = useState([]);
 
@@ -37,7 +38,8 @@ function App() {
 
 
   const dispatch = useDispatch();
-
+  const { cartItems } = useSelector(state => state.cart.list)
+  console.log(cartItems);
 
   const { darkTheme, lightTheme } = useContext(ThemeContext);
   const toggleTheme = () => {
@@ -51,31 +53,10 @@ function App() {
     dispatch(fetchProducts());
     dispatch(fetchFavorites());
     dispatch(fetchOrders());
+    dispatch(fetchCart());
 
     setIsLoading(true)
-    const fetchData = async () => {
-      try {
-        const [
-          // updatedProducts,
-          updatedCart,
-          updatedOrders,
-          // updatedFavorites
-        ] = await Promise.all([
-          // apiGetProducts(),
-          apiGetCart(),
-          apiGetOrder(),
-          // apiGetFavorites(),
-        ])
 
-        // setFilteredGoods(updatedProducts);
-        setCartItems(updatedCart);
-        setOrderProducts(updatedOrders);
-        // setFavorites(updatedFavorites);
-      } catch (error) {
-        throw new Error(error.message)
-      }
-    }
-    fetchData();
     setIsLoading(false);
   }, [])
 
@@ -87,7 +68,7 @@ function App() {
     } try {
       await apiAddToCart(productId, quantity);
       const updatedCart = await apiGetCart();
-      setCartItems(updatedCart)
+      // setCartItems(updatedCart)
     } catch (er) {
       alert(er.message)
     }
@@ -95,9 +76,9 @@ function App() {
 
 
   const handleDeleteItemFromCart = async (id) => {
-    if (cartItems.length === 1) {
-      setTotal(0);
-    }
+    // if (cartItems.length === 1) {
+    //   setTotal(0);
+    // }
 
     const isItemInCart = cartItems.some(obj => +obj.id === +id);
     if (!isItemInCart) {
@@ -107,7 +88,7 @@ function App() {
       const resData = await deleteFromCart(id);
       if (resData) {
         const updatedCartItems = cartItems.filter(obj => obj.id !== id)
-        setCartItems(updatedCartItems)
+        // setCartItems(updatedCartItems)
       }
     } catch (error) {
       alert(error.message)
@@ -115,12 +96,12 @@ function App() {
   }
 
   useEffect(() => {
-    if (cartItems && cartItems.length > 0) {
-      const sum = cartItems.reduce((accum, item) => {
-        return accum += +item.price
-      }, 0)
-      setTotal(sum)
-    }
+    //   if (cartItems && cartItems.length > 0) {
+    //     const sum = cartItems.reduce((accum, item) => {
+    //       return accum += +item.price
+    //     }, 0)
+    // setTotal(sum)
+    // }
   }, [cartItems])
 
 
@@ -129,8 +110,8 @@ function App() {
     setIsOrderSubmit(true);
     setOrderProducts(prev => [...orderProducts, cartItems]);
     await apiOrderCreate();
-    setCartItems([]);
-    setTotal('0')
+    // setCartItems([]);
+    // setTotal('0')
   }
 
   // const toggleFavorites = async (id) => {
@@ -155,16 +136,16 @@ function App() {
     <Store.Provider
       value={{
         // filteredGoods,
-        cartItems,
+        // cartItems,
         // favorites,
         searchValue,
         theme,
         isLoading,
         isCartOpened,
-        total,
+        // total,
         orderProducts,
         setOrderProducts,
-        setCartItems,
+        // setCartItems,
         toggleTheme,
         handleDeleteItemFromCart,
         toggleOpenCart,
