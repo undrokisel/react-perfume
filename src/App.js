@@ -16,7 +16,6 @@ import { apiGetFavorites, apiToggleFavorites } from './api/favorites.js';
 
 function App() {
 
-
   const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState("light")
   const [isCartOpened, setCartOpened] = useState(false);
