@@ -3,7 +3,7 @@ import { URL_GET_PRODUCTS, instance } from "../api/apiUrls";
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
-    async (_, { rejectWithValue, dispatch }) => {
+    async (_, { rejectWithValue }) => {
         try {
             const response = await instance.get(URL_GET_PRODUCTS);
             if (response.status !== 200) {
@@ -28,13 +28,7 @@ const productsSlice = createSlice({
         list: [],
         status: null
     },
-    reducers: {
-        // addToFavorites(state, action) {
-        // state.list.push(action.payload)
-        //     console.log(state);
-        //     console.log(action);
-        // }
-    }, extraReducers: {
+    extraReducers: {
         [fetchProducts.pending]: (state) => {
             state.status = 'loading';
             state.error = null;

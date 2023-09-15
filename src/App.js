@@ -7,14 +7,15 @@ import { Favorites } from './pages/Favorites/Favorites.jsx';
 import { ThemeContext } from './context/ThemeContext.js';
 import { Store } from './context/Store.js'
 import { NotFound } from './pages/ErrorPages/NotFound.jsx';
-import { apiGetProducts } from './api/products.js';
+// import { apiGetProducts } from './api/products.js';
 import { apiAddToCart, apiGetCart, deleteFromCart } from './api/cart.js';
 import { apiGetOrder, apiOrderCreate } from './api/order.js';
 import { debounce } from 'lodash';
 import { Orders } from './pages/Orders';
 import { apiGetFavorites, apiToggleFavorites } from './api/favorites.js';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchProducts } from './store/productsSlice.js';
+import { fetchFavorites } from './store/favoritesSlice.js';
 
 function App() {
 
@@ -23,21 +24,18 @@ function App() {
   const [isCartOpened, setCartOpened] = useState(false);
 
   const [searchValue, setSearchValue] = useState('')
-  const [filteredGoods, setFilteredGoods] = useState([])
+  // const [filteredGoods, setFilteredGoods] = useState([])
 
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState('0')
 
-  const [favorites, setFavorites] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
 
   const [orderProducts, setOrderProducts] = useState([])
   const [isOrderSubmit, setIsOrderSubmit] = useState(false);
 
 
   const dispatch = useDispatch();
-
-  const fetchedProducts = useSelector(state => state.products.list); 
-  // console.log(fetchedProducts);
 
 
   const { darkTheme, lightTheme } = useContext(ThemeContext);
@@ -50,24 +48,29 @@ function App() {
   useEffect(() => {
 
     dispatch(fetchProducts());
+    console.log('fetchProducts');
+    dispatch(fetchFavorites());
+    console.log('fetchFavorites');
 
     setIsLoading(true)
     const fetchData = async () => {
       try {
-        const [updatedProducts,
+        const [
+          // updatedProducts,
           updatedCart,
           updatedOrders,
-          updatedFavorites] = await Promise.all([
-            apiGetProducts(),
-            apiGetCart(),
-            apiGetOrder(),
-            apiGetFavorites(),
-          ])
-          
-        setFilteredGoods(updatedProducts);
+          // updatedFavorites
+        ] = await Promise.all([
+          // apiGetProducts(),
+          apiGetCart(),
+          apiGetOrder(),
+          // apiGetFavorites(),
+        ])
+
+        // setFilteredGoods(updatedProducts);
         setCartItems(updatedCart);
         setOrderProducts(updatedOrders);
-        setFavorites(updatedFavorites);
+        // setFavorites(updatedFavorites);
       } catch (error) {
         throw new Error(error.message)
       }
@@ -130,11 +133,11 @@ function App() {
     setTotal('0')
   }
 
-  const toggleFavorites = async (id) => {
-    await apiToggleFavorites(id);
-    const updatedFavorites = await apiGetFavorites();
-    setFavorites(updatedFavorites);
-  }
+  // const toggleFavorites = async (id) => {
+  //   await apiToggleFavorites(id);
+  //   const updatedFavorites = await apiGetFavorites();
+  //   setFavorites(updatedFavorites);
+  // }
 
   const toggleOpenCart = () => {
     setCartOpened(!isCartOpened)
@@ -151,9 +154,9 @@ function App() {
 
     <Store.Provider
       value={{
-        filteredGoods,
+        // filteredGoods,
         cartItems,
-        favorites,
+        // favorites,
         searchValue,
         theme,
         isLoading,
@@ -165,7 +168,7 @@ function App() {
         toggleTheme,
         handleDeleteItemFromCart,
         toggleOpenCart,
-        toggleFavorites,
+        // toggleFavorites,
         handleAddToCart,
         handleSearchChange,
         handleIsOrderSubmit,

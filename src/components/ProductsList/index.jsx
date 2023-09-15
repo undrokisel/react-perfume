@@ -10,11 +10,12 @@ export function ProductsList() {
     const {
         // filteredGoods,
         isLoading,
-        favorites,
+        // favorites,
         searchValue
     } = useContext(Store);
 
     const products  = useSelector((state) => state.products.list)
+    const favorites  = useSelector((state) => state.favorites.list)
 
     // const arr = useLocation().pathname === '/favorites' ? favorites : filteredGoods;
     const arr = useLocation().pathname === '/favorites' ? favorites : products;
