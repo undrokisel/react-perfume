@@ -10,7 +10,6 @@ export function ProductsList() {
     const {
         // filteredGoods,
         isLoading,
-        // favorites,
         searchValue
     } = useContext(Store);
 

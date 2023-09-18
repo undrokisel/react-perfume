@@ -4,6 +4,7 @@ import { Store } from "../../context/Store"
 import ReactStars from "react-rating-stars-component";
 import { addToCartThunk } from "../../store/cartsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleFavoritesThunk } from "../../store/favoritesSlice";
 
 export function Card({
     isFavorite,
@@ -28,7 +29,7 @@ export function Card({
     //todo  
     const productId = id;
     const quantity = 1;
-    const { theme, toggleFavorites } = useContext(Store);
+    const { theme } = useContext(Store);
 
     const dispatch = useDispatch();
 
@@ -59,7 +60,7 @@ export function Card({
                     ? `${ss.favorite} ${ss.favorite_checked}`
                     : `${ss.favorite} ${ss.favorite_unchecked}`}
 
-                onClick={() => toggleFavorites(productId)}
+                onClick={() => dispatch(toggleFavoritesThunk(productId))}
             >
             </div>
             <div className={ss.card__img}>
