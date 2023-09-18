@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react'
 import ss from './Orders.module.scss'
-// import { Store } from '../../context/Store';
 import Info from '../../components/Info';
 import { Loader } from '../../components/Loader';
-// import { apiGetOrder } from '../../api/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from '../../store/ordersSlice';
 
 export const Orders = () => {
-    // const { orderProducts, setOrderProducts } = useContext(Store);
-
     const dispatch = useDispatch()
     const { list, status, error } = useSelector(state => state.orders)
     const orderProducts = list
-
     useEffect(() => {
         dispatch(fetchOrders)
     }, [dispatch])
-
     return (
-
         <div>
             {status === 'loading' && <Loader />}
             {status === 'rejected' && error &&

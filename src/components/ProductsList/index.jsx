@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 export function ProductsList() {
 
     const {
-        // filteredGoods,
         isLoading,
         searchValue
     } = useContext(Store);
@@ -16,7 +15,6 @@ export function ProductsList() {
     const products  = useSelector((state) => state.products.list)
     const favorites  = useSelector((state) => state.favorites.list)
 
-    // const arr = useLocation().pathname === '/favorites' ? favorites : filteredGoods;
     const arr = useLocation().pathname === '/favorites' ? favorites : products;
     
     const goods = arr && Array.isArray(arr)

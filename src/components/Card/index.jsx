@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ss from "./Card.module.scss"
 import { Store } from "../../context/Store"
 import ReactStars from "react-rating-stars-component";
