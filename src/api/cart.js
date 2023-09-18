@@ -1,13 +1,13 @@
 import { URL_CART, instance } from "./apiUrls";
 
-export const apiGetCart = async () => {
-    try {
-        const response = await instance.get(URL_CART);
-        return response.data;
-    } catch (error) {
-        throw new Error(error.message);
-    }
-}
+// export const apiGetCart = async () => {
+//     try {
+//         const response = await instance.get(URL_CART);
+//         return response.data;
+//     } catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
 
 // export const apiAddToCart = async (productId, quantity) => {
 //     try {

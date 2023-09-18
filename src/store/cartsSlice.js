@@ -5,8 +5,8 @@ export const fetchCart = createAsyncThunk(
     'cart/fetch',
     async (_, { rejectWithValue, dispatch, }) => {
         try {
-            const response = await instance.get(URL_CART)
-            if (response.status !== 200) {
+            const response = await instance.get(URL_CART) 
+            if (response.status && response.status !== 200) {
                 throw new Error("Error with fetching cart")
             }
             const items = response.data
@@ -29,11 +29,11 @@ export const addToCartThunk = createAsyncThunk(
                 quantity: quantity
             }
             const response = await instance.post(URL_CART, item)
-            if (response.status !== 200) {
+            if (response.status && response.status !== 200) {
                 throw new Error("Error with adding new item to cart")
             }
             let product = getState().products.list.find(item => item.id === productId)
-            const total = +getState().cart.total + +product.price 
+            const total = +getState().cart.total + +product.price
             dispatch(addToCart({ product, total }));
         } catch (error) {
             return rejectWithValue(error.message)
@@ -41,10 +41,26 @@ export const addToCartThunk = createAsyncThunk(
     }
 )
 
+export const removeFromCartThunk = createAsyncThunk(
+    'cart/remove',
+    async (itemId, { rejectWithValue, dispatch }) => {
+        try {
+            const response = await instance.delete(URL_CART + `/${itemId}`)
+            if (response.status !== 200) {
+                throw new Error("Error with deleting item from cart")
+            }
+            dispatch(removeFromCart(itemId))
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+
+    }
+)
 
 const setError = (state, action) => {
     state.status = 'rejected'
     state.error = action.payload
+    console.log('error'); 
 }
 const setLoading = (state) => {
     state.status = 'loading'
@@ -62,11 +78,16 @@ const cartsSlice = createSlice({
         error: null,
         status: null,
         total: 0
-    }, 
+    },
     reducers: {
         addToCart(state, action) {
             state.list.push(action.payload.product)
             state.total = action.payload.total
+        },
+        removeFromCart(state, action) {
+            const priceItem = state.list.find(item => item.id === action.payload).price
+            state.list = state.list.filter(item => item.id !== action.payload)
+            state.total = +state.total - +priceItem
         }
     },
     extraReducers: {
@@ -78,8 +99,9 @@ const cartsSlice = createSlice({
         },
         [fetchCart.rejected]: setError,
         [addToCartThunk.rejected]: setError,
+        [removeFromCartThunk.rejected]: setError,
     }
 })
 
-export const { addToCart } = cartsSlice.actions
+export const { addToCart, removeFromCart } = cartsSlice.actions
 export default cartsSlice.reducer;

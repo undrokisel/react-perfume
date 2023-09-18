@@ -8,7 +8,11 @@ import { ThemeContext } from './context/ThemeContext.js';
 import { Store } from './context/Store.js'
 import { NotFound } from './pages/ErrorPages/NotFound.jsx';
 // import { apiGetProducts } from './api/products.js';
-import { apiAddToCart, apiGetCart, deleteFromCart } from './api/cart.js';
+import {
+  // apiAddToCart, 
+  // apiGetCart, 
+  deleteFromCart
+} from './api/cart.js';
 import { apiGetOrder, apiOrderCreate } from './api/order.js';
 import { debounce } from 'lodash';
 import { Orders } from './pages/Orders';
@@ -59,19 +63,19 @@ function App() {
     setIsLoading(false);
   }, [])
 
-  const handleAddToCart = async (productId, quantity) => {
-    const isItemInCart = cartItems.some(obj => +obj.id === +productId)
-    if (isItemInCart) {
-      alert(`item was added before`)
-      return
-    } try {
-      // await apiAddToCart(productId, quantity);
-      const updatedCart = await apiGetCart();
-      // setCartItems(updatedCart)
-    } catch (er) {
-      alert(er.message)
-    }
-  }
+  // const handleAddToCart = async (productId, quantity) => {
+  //   const isItemInCart = cartItems.some(obj => +obj.id === +productId)
+  //   if (isItemInCart) {
+  //     alert(`item was added before`)
+  //     return
+  //   } try {
+  // await apiAddToCart(productId, quantity);
+  // const updatedCart = await apiGetCart();
+  // setCartItems(updatedCart)
+  //   } catch (er) {
+  //     alert(er.message)
+  //   }
+  // }
 
 
   const handleDeleteItemFromCart = async (id) => {
@@ -149,13 +153,13 @@ function App() {
         handleDeleteItemFromCart,
         toggleOpenCart,
         // toggleFavorites,
-        handleAddToCart,
+        // handleAddToCart,
         handleSearchChange,
         handleIsOrderSubmit,
         isOrderSubmit,
         setIsOrderSubmit,
         // apiAddToCart,
-        apiGetCart,
+        // apiGetCart,
         deleteFromCart,
       }}>
       <div className={theme === "light"

@@ -3,13 +3,15 @@ import ss from "./Drawer.module.scss"
 import { Store } from "../../context/Store";
 import Info from "../Info";
 import { useCart } from "../../hooks/useCart";
+import { useDispatch } from "react-redux";
+import { removeFromCartThunk } from "../../store/cartsSlice";
 
 
 export function Drawer() {
 
     const {
         theme,
-        handleDeleteItemFromCart,
+        // handleDeleteItemFromCart,
         toggleOpenCart,
         handleIsOrderSubmit,
         isOrderSubmit,
@@ -17,6 +19,7 @@ export function Drawer() {
     } = useContext(Store)
 
     const { total, cartItems } = useCart();
+    const dispatch = useDispatch()
 
     return (
         <div className={`${ss.overlay} ${theme} ${isCartOpened ? ss.overlayVisible : ''}`}
@@ -82,7 +85,7 @@ export function Drawer() {
                                                 </div>
                                             </div>
                                             <button
-                                                onClick={() => handleDeleteItemFromCart(id)}
+                                                onClick={() => dispatch(removeFromCartThunk(id))}
                                                 className={ss.itemCart__remove} type="">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>
                                             </button>
