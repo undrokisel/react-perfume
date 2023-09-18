@@ -112,7 +112,7 @@ export function Drawer() {
                                     className={`${ss.total__item} ${ss.total__item_tax}`}>
                                     <span>Tax 5%:</span>
                                     <div className={ss.dash}></div>
-                                    <b>{total / 20}$</b>
+                                    <b>{(total / 20).toFixed(2)}$</b>
                                 </li>
                             </ul>
                             <button

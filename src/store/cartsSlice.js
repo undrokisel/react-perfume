@@ -68,7 +68,8 @@ const setLoading = (state) => {
 }
 
 const calcTotal = (items) => {
-    return items.reduce((total, item) => total += +item.price, 0)
+    let total = items.reduce((total, item) => total += +item.price, 0)
+    return total.toFixed(2)
 }
 
 const cartsSlice = createSlice({
@@ -82,12 +83,12 @@ const cartsSlice = createSlice({
     reducers: {
         addToCart(state, action) {
             state.list.push(action.payload.product)
-            state.total = action.payload.total
+            state.total = +action.payload.total.toFixed(2)
         },
         removeFromCart(state, action) {
             const priceItem = state.list.find(item => item.id === action.payload).price
             state.list = state.list.filter(item => item.id !== action.payload)
-            state.total = +state.total - +priceItem
+            state.total = +state.total - +priceItem.toFixed(2)
         }
     },
     extraReducers: {
