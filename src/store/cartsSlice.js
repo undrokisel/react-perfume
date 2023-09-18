@@ -89,7 +89,10 @@ const cartsSlice = createSlice({
             const priceItem = state.list.find(item => item.id === action.payload).price
             state.list = state.list.filter(item => item.id !== action.payload)
             state.total = Number(state.total) - ((Number(priceItem)).toFixed(2))
-            console.log(state.total);
+        }, 
+        clearCart(state, action) {
+            state.list = []
+            state.total = 0
         }
     },
     extraReducers: {
@@ -105,5 +108,5 @@ const cartsSlice = createSlice({
     }
 })
 
-export const { addToCart, removeFromCart } = cartsSlice.actions
+export const { addToCart, removeFromCart, clearCart } = cartsSlice.actions
 export default cartsSlice.reducer;

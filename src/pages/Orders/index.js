@@ -43,16 +43,6 @@ export const Orders = () => {
                         {
                             orderProducts && orderProducts.map(({
                                 name,
-                                brand,
-                                category,
-                                description,
-                                id,
-                                volume,
-                                concentration,
-                                country,
-                                ingredients,
-                                reviews,
-                                rating,
                                 img,
                                 price,
                             },

@@ -109,13 +109,13 @@ function App() {
 
 
 
-  const handleIsOrderSubmit = async () => {
-    setIsOrderSubmit(true);
-    setOrderProducts(prev => [...orderProducts, cartItems]);
-    await apiOrderCreate();
+  // const handleIsOrderSubmit = async () => {
+    // setIsOrderSubmit(true);
+    // setOrderProducts(prev => [...orderProducts, cartItems]);
+    // await apiOrderCreate();
     // setCartItems([]);
     // setTotal('0')
-  }
+  // }
 
   // const toggleFavorites = async (id) => {
   //   await apiToggleFavorites(id);
@@ -155,9 +155,9 @@ function App() {
         // toggleFavorites,
         // handleAddToCart,
         handleSearchChange,
-        handleIsOrderSubmit,
-        isOrderSubmit,
-        setIsOrderSubmit,
+        // handleIsOrderSubmit,
+        // isOrderSubmit,
+        // setIsOrderSubmit,
         // apiAddToCart,
         // apiGetCart,
         deleteFromCart,
