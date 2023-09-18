@@ -9,17 +9,17 @@ export const apiGetCart = async () => {
     }
 }
 
-export const apiAddToCart = async (productId, quantity) => {
-    try {
-        const response = await instance.post(URL_CART, {
-            product_id: productId,
-            quantity: quantity
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error(error.message);
-    }
-}
+// export const apiAddToCart = async (productId, quantity) => {
+//     try {
+//         const response = await instance.post(URL_CART, {
+//             product_id: productId,
+//             quantity: quantity
+//         });
+//         return response.data;
+//     } catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
 
 
 export const deleteFromCart = async (id) => {

@@ -38,8 +38,7 @@ function App() {
 
 
   const dispatch = useDispatch();
-  const { cartItems } = useSelector(state => state.cart.list)
-  console.log(cartItems);
+  const cartItems = useSelector(state => state.cart.list)
 
   const { darkTheme, lightTheme } = useContext(ThemeContext);
   const toggleTheme = () => {
@@ -66,7 +65,7 @@ function App() {
       alert(`item was added before`)
       return
     } try {
-      await apiAddToCart(productId, quantity);
+      // await apiAddToCart(productId, quantity);
       const updatedCart = await apiGetCart();
       // setCartItems(updatedCart)
     } catch (er) {
@@ -155,7 +154,7 @@ function App() {
         handleIsOrderSubmit,
         isOrderSubmit,
         setIsOrderSubmit,
-        apiAddToCart,
+        // apiAddToCart,
         apiGetCart,
         deleteFromCart,
       }}>

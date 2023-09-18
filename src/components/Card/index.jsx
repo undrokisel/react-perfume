@@ -2,6 +2,8 @@ import { useContext } from "react";
 import ss from "./Card.module.scss"
 import { Store } from "../../context/Store"
 import ReactStars from "react-rating-stars-component";
+import { addToCartThunk } from "../../store/cartsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export function Card({
     isFavorite,
@@ -25,8 +27,24 @@ export function Card({
 
     //todo  
     const productId = id;
-    const quantity = 1;   
-    const { handleAddToCart, theme, toggleFavorites } = useContext(Store);
+    const quantity = 1;
+    const {
+        // handleAddToCart, 
+        theme, toggleFavorites } = useContext(Store);
+
+    const dispatch = useDispatch();
+
+    const cartItems = useSelector(state => state.cart.list)
+    const handleAddToCart = (productId, quantity) => {
+        // check if items just added to cart before
+        const isItemInCart = cartItems.some(obj => +obj.id === +productId)
+        if (isItemInCart) {
+            return alert(`item was added before`)
+        }
+        dispatch(addToCartThunk({ productId, quantity }))
+    }
+
+
     return (
         <div className={`${ss.goods__card} ${ss.card} ${ss[theme]}`}>
             <div
