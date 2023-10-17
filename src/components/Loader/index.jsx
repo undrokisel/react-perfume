@@ -3,6 +3,7 @@ import ss from './Loader.module.scss'
 
 export const Loader = () => {
     return (
-        <div className={ss.loader}></div>
+        <div data-testid="loader"
+        className={ss.loader}></div>
     )
 }
