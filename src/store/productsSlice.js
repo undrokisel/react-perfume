@@ -37,9 +37,8 @@ const productsSlice = createSlice({
             state.status = 'resolved';
             state.list = action.payload
         },
-        [fetchProducts.rejected]: () => setError,
+        [fetchProducts.rejected]: setError,
     }
 })
 
-export const { addToFavorites } = productsSlice.actions
 export default productsSlice.reducer
