@@ -3,7 +3,13 @@ import ss from './Info.module.scss';
 import { Link } from 'react-router-dom';
 import { Store } from '../../context/Store';
 
-export default function Info({ refDrawer = false, title, text, img, buttonText, buttonLink }) {
+export default function Info({ 
+    refDrawer = false, 
+    title, 
+    text, 
+    img, 
+    buttonText, 
+    buttonLink }) {
     const { theme, isCartOpened } = useContext(Store);
     let themeStyle = theme;
     if ((isCartOpened) && refDrawer) {
@@ -11,7 +17,8 @@ export default function Info({ refDrawer = false, title, text, img, buttonText, 
     }
 
     return (
-        <div className={`${ss.info} ${themeStyle}-theme_color`}>
+        <div data-testid="info" 
+        className={`${ss.info} ${themeStyle}-theme_color`}>
 
             {
                 img
@@ -27,7 +34,9 @@ export default function Info({ refDrawer = false, title, text, img, buttonText, 
             }
             {
                 text
-                    ? <div className={`${ss.info__text} `}>{text}</div>
+                    ? <div
+                    data-testid='test-title'
+                    className={`${ss.info__text} `}>{text}</div>
                     : null
             }
             {
