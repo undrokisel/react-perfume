@@ -60,7 +60,6 @@ export const removeFromCartThunk = createAsyncThunk(
 const setError = (state, action) => {
     state.status = 'rejected'
     state.error = action.payload
-    console.log('error');
 }
 const setLoading = (state) => {
     state.status = 'loading'
